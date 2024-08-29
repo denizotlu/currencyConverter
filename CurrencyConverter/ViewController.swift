@@ -26,7 +26,6 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         super.viewDidLoad()
         view.backgroundColor = .systemBrown
         
-        
         resultLabel()
         view.addSubview(label)
 
@@ -37,24 +36,21 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         pickerSettings()
         apiReq()
         
-        
     }
-    
-    
     
     func resultLabel(){
         label.frame = CGRect(x: 200, y: 500, width: 200, height: 50)
-        label.center = CGPoint(x: 200, y: 500)
+        label.center = CGPoint(x: 200, y: 200)
         label.textColor = .black
         label.textAlignment = .center
-        label.text = "Result"
+        label.text = "How Much USD?"
         label.textColor = .systemGray2
         label.backgroundColor = .white
     }
     
     func textFieldFunc(){
-        textField.frame = CGRect(x: 240, y: 165, width: 275, height: 40)
-        textField.center = CGPoint(x: 240, y: 165)
+        textField.frame = CGRect(x: 200, y: 550, width: 285, height: 40)
+        textField.center = CGPoint(x: 200, y: 550)
         textField.placeholder = " Enter Amount:"
         textField.backgroundColor = .lightText
         textField.layer.masksToBounds = false
@@ -82,16 +78,15 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
             let total = theAmountText * activeCurreny
             label.text = String(format: "%.2f", total)
         }
-        
-        
-        
     }
 
+    
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return currenyy.count
+
     }
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return currenyy[row]
@@ -100,8 +95,8 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         activeCurreny = valuee[row]
         updateViews(input: activeCurreny)
-
     }
+   
     
     func apiReq(){
         
@@ -123,7 +118,6 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
                 DispatchQueue.main.async {
                     self.pickerView.reloadAllComponents()
                 }
-
             }catch{
                 print("cath")
             }
